@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4ED64817B397902E4E36C556 /* Pods_CalculatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D5460E31A5DCFF988C68DF /* Pods_CalculatorTests.framework */; };
 		B1153D78728B021D6EA5257B /* Pods_Calculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00C55BF85FF4DC43ED417B8 /* Pods_Calculator.framework */; };
+		B5F79B401F46E9F300CD19C7 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F79B3F1F46E9F300CD19C7 /* Brain.swift */; };
 		B5FA69621F46E5DF00150326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FA69611F46E5DF00150326 /* AppDelegate.swift */; };
 		B5FA69641F46E5DF00150326 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FA69631F46E5DF00150326 /* ViewController.swift */; };
 		B5FA69671F46E5DF00150326 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5FA69651F46E5DF00150326 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		01D5460E31A5DCFF988C68DF /* Pods_CalculatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalculatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		073A1AA402437A3E3899C827 /* Pods-Calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calculator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Calculator/Pods-Calculator.release.xcconfig"; sourceTree = "<group>"; };
 		9D09BD38384E555726DA15FE /* Pods-CalculatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalculatorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalculatorTests/Pods-CalculatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B5F79B3F1F46E9F300CD19C7 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		B5FA695E1F46E5DF00150326 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FA69611F46E5DF00150326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5FA69631F46E5DF00150326 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				B5FA69611F46E5DF00150326 /* AppDelegate.swift */,
 				B5FA69631F46E5DF00150326 /* ViewController.swift */,
+				B5F79B3F1F46E9F300CD19C7 /* Brain.swift */,
 				B5FA69651F46E5DF00150326 /* Main.storyboard */,
 				B5FA69681F46E5DF00150326 /* Assets.xcassets */,
 				B5FA696A1F46E5DF00150326 /* LaunchScreen.storyboard */,
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5FA69641F46E5DF00150326 /* ViewController.swift in Sources */,
+				B5F79B401F46E9F300CD19C7 /* Brain.swift in Sources */,
 				B5FA69621F46E5DF00150326 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

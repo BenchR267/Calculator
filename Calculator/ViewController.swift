@@ -10,16 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet private var textField: UITextField? {
+        didSet {
+            self.textField?.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
+        }
+    }
+    @IBOutlet private var label: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc func textChanged(_ textField: UITextField) {
+        let input = textField.text ?? ""
+        self.label?.text = Brain.compute(input: input).description
     }
-
-
+    
 }
-

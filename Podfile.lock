@@ -2,21 +2,21 @@ PODS:
   - ParserCombinator (0.1.0)
 
 DEPENDENCIES:
-  - ParserCombinator (from `https://github.com/BenchR267/ParserCombinator`, branch `master`)
+  - ParserCombinator (from `https://github.com/BenchR267/ParserCombinator`, branch `develop`)
 
 EXTERNAL SOURCES:
   ParserCombinator:
-    :branch: master
+    :branch: develop
     :git: https://github.com/BenchR267/ParserCombinator
 
 CHECKOUT OPTIONS:
   ParserCombinator:
-    :commit: ab0a7f8b117abb8504eb85d0a85745f5e152b2c0
+    :commit: 10a13e71ddf61569cf09b1ab9184e796dc3ad7cc
     :git: https://github.com/BenchR267/ParserCombinator
 
 SPEC CHECKSUMS:
   ParserCombinator: 22ed3b687f6d001667526c62a668be96a0e53800
 
-PODFILE CHECKSUM: aa9d8f9ae4493cf24c0ff7c860b204d5eacdebb1
+PODFILE CHECKSUM: d9fbedc1e01c918522fbd3d3e7a0586bda0443a2
 
 COCOAPODS: 1.3.1
