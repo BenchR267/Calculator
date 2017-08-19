@@ -62,7 +62,7 @@ enum Brain {
     
     private static let funcCall = Parser.or(foundationFunctions)
     
-    private static let factor: Parser<String, Double> = number | string("(") >~ expr <~ string(")") | funcCall
+    private static let factor = number | string("(") >~ expr <~ string(")") | funcCall
     
     private static let term: Parser<String, Double> = (factor ~ ((string("*") ~ factor) | (string("/") ~ factor)).rep) ^^ {
             number, list in
