@@ -8,20 +8,29 @@
 
 import ParserCombinator
 
-struct TestError: ParseError {
-    let code: UInt64
-    
-    init(_ code: UInt64) {
-        self.code = code
-    }
-}
-
 enum Brain {
+    
+    enum Error: ParseError, CustomStringConvertible {
+        case expected(String, got: String)
+        
+        var code: UInt64 {
+            switch self {
+            case .expected(_): return 0
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case let .expected(e, got):
+                return "Expected \(e), but got \(got) instead."
+            }
+        }
+    }
     
     private static func string(_ s: String) -> Parser<String, String> {
         return Parser { str in
             guard str.hasPrefix(s) else {
-                return .fail(TestError(1))
+                return .fail(Error.expected(s, got: String(str.prefix(s.count))))
             }
             return .success(result: s, rest: String(str.dropFirst(s.count)))
         }
@@ -29,15 +38,31 @@ enum Brain {
     
     private static let number = "-?[0-9]+(\\.[0-9]+)?".r ^^ { Double($0.map(String.init).joined()) ?? 0 }
     
-    private static let foundationFunctions: [Parser<String, Double>] = [
-        ("sin", sin),
-        ("sqrt", sqrt),
-        ("tan", tan)
-    ].map({ name, f in (string("\(name)(") >~ expr <~ string(")")) ^^ f })
+    private static let foundationFunctions: [Parser<String, Double>] = {
+        let functions: [(String, (Double) -> Double)] = [
+            ("asin", asin),
+            ("acos", acos),
+            ("atan", atan),
+            ("ceil", ceil),
+            ("cos", cos),
+            ("cosh", cosh),
+            ("fabs", fabs),
+            ("floor", floor),
+            ("log", log),
+            ("log2", log2),
+            ("log10", log10),
+            ("round", round),
+            ("sin", sin),
+            ("sinh", sinh),
+            ("sqrt", sqrt),
+            ("tan", tan)
+        ]
+        return functions.map({ name, f in (string("\(name)(") >~ expr <~ string(")")) ^^ f })
+    }()
     
     private static let funcCall = Parser.or(foundationFunctions)
     
-    private static let factor: Parser<String, Double> = funcCall | number | string("(") >~ expr <~ string(")")
+    private static let factor: Parser<String, Double> = number | string("(") >~ expr <~ string(")") | funcCall
     
     private static let term: Parser<String, Double> = (factor ~ ((string("*") ~ factor) | (string("/") ~ factor)).rep) ^^ {
             number, list in
@@ -61,8 +86,15 @@ enum Brain {
             }
         }
     
-    static func compute(input: String) -> Double {
-        return expr.parse(input) ?? 0.0
+    static func compute(input: String) -> String {
+        switch expr.parse(input) {
+        case let .success(result, _):
+            return result.description
+        case let .fail(err as Error):
+            return err.description
+        default:
+            return "Unexpected error…"
+        }
     }
     
 }

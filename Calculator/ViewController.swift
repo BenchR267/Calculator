@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textField?.becomeFirstResponder()
     }
     
     @objc func textChanged(_ textField: UITextField) {
