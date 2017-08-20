@@ -1,22 +1,12 @@
 PODS:
-  - ParserCombinator (0.1.0)
+  - SwiftParserCombinator (1.0.0)
 
 DEPENDENCIES:
-  - ParserCombinator (from `https://github.com/BenchR267/ParserCombinator`, branch `master`)
-
-EXTERNAL SOURCES:
-  ParserCombinator:
-    :branch: master
-    :git: https://github.com/BenchR267/ParserCombinator
-
-CHECKOUT OPTIONS:
-  ParserCombinator:
-    :commit: 8b0673490a04229a828602d3b0afcab11eae614f
-    :git: https://github.com/BenchR267/ParserCombinator
+  - SwiftParserCombinator
 
 SPEC CHECKSUMS:
-  ParserCombinator: 22ed3b687f6d001667526c62a668be96a0e53800
+  SwiftParserCombinator: 78517aa04d35cc26f94f6621da443e3e9b00620e
 
-PODFILE CHECKSUM: aa9d8f9ae4493cf24c0ff7c860b204d5eacdebb1
+PODFILE CHECKSUM: 9ebc487b51cab02fb4de1c4859b770d13d759325
 
 COCOAPODS: 1.3.1

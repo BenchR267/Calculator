@@ -6,7 +6,7 @@
 //  Copyright © 2017 Benjamin Herzog. All rights reserved.
 //
 
-import ParserCombinator
+import SwiftParserCombinator
 
 enum Brain {
     

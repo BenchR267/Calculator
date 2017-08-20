@@ -256,11 +256,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Calculator/Pods-Calculator-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ParserCombinator/ParserCombinator.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftParserCombinator/SwiftParserCombinator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParserCombinator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftParserCombinator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
