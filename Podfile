@@ -4,7 +4,7 @@ target 'Calculator' do
   use_frameworks!
 
   # Pods for Calculator
-  pod 'SwiftParserCombinator'
+  pod 'Parsel'
 
   target 'CalculatorTests' do
     inherit! :search_paths
