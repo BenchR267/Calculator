@@ -21,17 +21,6 @@ enum Brain {
         }
     }
     
-    private static func string(_ s: String) -> Parser<String, String> {
-        return Parser { str in
-            guard str.hasPrefix(s) else {
-                return .fail(Error.expected(s, got: String(str.prefix(s.count))))
-            }
-            return .success(result: s, rest: String(str.dropFirst(s.count)))
-        }
-    }
-    
-    private static let number = "-?[0-9]+(\\.[0-9]+)?".r ^^ { Double($0.map(String.init).joined()) ?? 0 }
-    
     private static let functions: [(String, (Double) -> Double)] = [
         ("asin", asin),
         ("acos", acos),
@@ -51,13 +40,13 @@ enum Brain {
         ("tan", tan)
     ]
     
-    private static let foundationFunctions = functions.map({ name, f in (string("\(name)(") >~ powParser <~ string(")")) ^^ f })
+    private static let foundationFunctions = functions.map({ name, f in (L.string("\(name)(") >~ calculator <~ L.string(")")) ^^ f })
     
     private static let funcCall = Parser.or(foundationFunctions)
     
-    private static let factor = string("(") >~ expr <~ string(")") | funcCall | number
+    private static let factor = L.string("(") >~ expr <~ L.string(")") | funcCall | L.floatingNumber
     
-    private static let term: Parser<String, Double> = (factor ~ ((string("*") ~ factor) | (string("/") ~ factor)).rep) ^^ {
+    private static let term: Parser<String, Double> = (factor ~ ((L.multiply ~ factor) | (L.divide ~ factor)).rep) ^^ {
         number, list in
         return list.reduce(number) { x, op in
             switch op.0 {
@@ -68,7 +57,7 @@ enum Brain {
         }
     }
     
-    private static let expr: Parser<String, Double> = (term ~ ((string("+") ~ term) | (string("-") ~ term)).rep) ^^ {
+    private static let expr: Parser<String, Double> = (term ~ ((L.plus ~ term) | (L.minus ~ term)).rep) ^^ {
         number, list in
         return list.reduce(number) { x, op in
             switch op.0 {
@@ -79,18 +68,20 @@ enum Brain {
         }
     }
     
-    private static let powParser: Parser<String, Double> = (expr ~ (string("^") ~ expr).rep) ^^ {
+    private static let powParser: Parser<String, Double> = (expr ~ (L.string("^") ~ expr).rep) ^^ {
         number, list in
         return list.reduce(number) { x, op in
             return pow(x, op.1)
         }
     }
     
+    private static let calculator = powParser
+    
     static func compute(input: String) -> String {
         guard !input.isEmpty else {
             return "Type in some calculation"
         }
-        switch powParser.parse(input) {
+        switch calculator.parse(input) {
         case let .success(result, _):
             return result.description
         case let .fail(err as Error):

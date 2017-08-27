@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     @objc func textChanged(_ textField: UITextField) {
         let input = textField.text ?? ""
-        self.label?.text = Brain.compute(input: input).description
+        self.label?.text = Brain.compute(input: input)
     }
     
     @IBAction func helpPressed(_ sender: UIBarButtonItem) {

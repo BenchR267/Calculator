@@ -4,7 +4,7 @@ target 'Calculator' do
   use_frameworks!
 
   # Pods for Calculator
-  pod 'Parsel'
+  pod 'Parsel', '2.0.0'
 
   target 'CalculatorTests' do
     inherit! :search_paths
