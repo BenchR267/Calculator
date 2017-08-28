@@ -40,13 +40,13 @@ enum Brain {
         ("tan", tan)
     ]
     
-    private static let foundationFunctions = functions.map({ name, f in (L.string("\(name)(") >~ calculator <~ L.string(")")) ^^ f })
+    private static let foundationFunctions = functions.map({ name, f in L.string("\(name)(") >~ calculator <~ L.string(")") ^^ f })
     
     private static let funcCall = Parser.or(foundationFunctions)
     
-    private static let factor = L.string("(") >~ expr <~ L.string(")") | funcCall | L.floatingNumber
+    private static let factor = (L.string("(") >~ expr <~ L.string(")")) | funcCall | L.floatingNumber
     
-    private static let term: Parser<String, Double> = (factor ~ ((L.multiply ~ factor) | (L.divide ~ factor)).rep) ^^ {
+    private static let term: Parser<String, Double> = factor ~ ((L.multiply ~ factor) | (L.divide ~ factor)).rep ^^ {
         number, list in
         return list.reduce(number) { x, op in
             switch op.0 {
@@ -57,7 +57,7 @@ enum Brain {
         }
     }
     
-    private static let expr: Parser<String, Double> = (term ~ ((L.plus ~ term) | (L.minus ~ term)).rep) ^^ {
+    private static let expr: Parser<String, Double> = term ~ ((L.plus ~ term) | (L.minus ~ term)).rep ^^ {
         number, list in
         return list.reduce(number) { x, op in
             switch op.0 {
@@ -68,7 +68,7 @@ enum Brain {
         }
     }
     
-    private static let powParser: Parser<String, Double> = (expr ~ (L.string("^") ~ expr).rep) ^^ {
+    private static let powParser: Parser<String, Double> = expr ~ (L.string("^") ~ expr).rep ^^ {
         number, list in
         return list.reduce(number) { x, op in
             return pow(x, op.1)
