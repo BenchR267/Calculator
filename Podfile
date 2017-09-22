@@ -4,7 +4,7 @@ target 'Calculator' do
   use_frameworks!
 
   # Pods for Calculator
-  pod 'Parsel', '2.1.1'
+  pod 'parsel', :git => 'https://github.com/BenchR267/parsel.git'
 
   target 'CalculatorTests' do
     inherit! :search_paths
